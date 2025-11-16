@@ -15,6 +15,11 @@ print(">>> openai package version:", openai.__version__)
 print(">>> openai file loaded from:", openai.__file__)
 print(">>> OpenAI class signature:", inspect.signature(openai.OpenAI))
 
+for proxy_var in ["HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY"]:
+    if proxy_var in os.environ:
+        print(f"Removendo variável de proxy: {proxy_var}")
+        del os.environ[proxy_var]
+
 
 
 print("VERSÃO DO OPENAI INSTALADA:", OpenAI)
