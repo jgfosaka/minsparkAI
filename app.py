@@ -82,6 +82,13 @@ class Estatistica(db.Model):
     flashcard_id = db.Column(db.Integer, db.ForeignKey('flashcard.id'), nullable=False)
     data_resposta = db.Column(db.DateTime, default=datetime.utcnow)
 
+with app.app_context():
+    try:
+        db.create_all()
+        print("Tabelas criadas/verificadas no Railway.")
+    except Exception as e:
+        print("Erro ao criar tabelas:", e)
+
 
 # Rota inicial
 
