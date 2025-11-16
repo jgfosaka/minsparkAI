@@ -266,20 +266,28 @@ input::placeholder {
 
 
 /* Evita que o último card estique verticalmente */
+/* Impede a row de esticar verticalmente */
 .flashcards-row {
+    display: flex !important;
     align-items: flex-start !important;
 }
 
+/* Impede cada coluna de tentar ocupar altura total */
 .flashcards-row .col-md-4 {
-    display: flex !important;
+    display: flex;
+    align-items: flex-start;
 }
 
+/* Garante que o card só tenha a altura do conteúdo */
 .flashcard-card {
     height: auto !important;
-    flex-grow: 0 !important;
+    flex: 0 0 auto !important;
 }
 
+
 .list-group-item {
-    white-space: normal !important;
-    word-break: keep-all !important;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
 }
