@@ -7,7 +7,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from openai import OpenAI
 from dotenv import load_dotenv
 
+import openai
 import inspect
+import sys
+
+print(">>> openai package version:", openai.__version__)
+print(">>> openai file loaded from:", openai.__file__)
+print(">>> OpenAI class signature:", inspect.signature(openai.OpenAI))
 
 
 
