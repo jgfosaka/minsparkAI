@@ -5,10 +5,13 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from openai import OpenAI
-import openai
 from dotenv import load_dotenv
+import openai
+import inspect
+print("OPENAI MODULE PATH:", openai.__file__)
+print("VERSION:", openai.__version__)
 
-print("VERSÃO DO OPENAI INSTALADA:", openai.__version__)
+print("VERSÃO DO OPENAI INSTALADA:", OpenAI)
 
 load_dotenv()
 def get_client():
