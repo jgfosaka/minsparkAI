@@ -4,18 +4,18 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from openai import OpenAI
+
 from dotenv import load_dotenv
 import openai
 import inspect
 print("OPENAI MODULE PATH:", openai.__file__)
 print("VERSION:", openai.__version__)
 
-print("VERSÃO DO OPENAI INSTALADA:", OpenAI)
+print("VERSÃO DO OPENAI INSTALADA:", openai.OpenAI)
 
 load_dotenv()
 def get_client():
-    return OpenAI(api_key=os.getenv("CHAVE_API"))
+    return openai.OpenAI(api_key=os.getenv("CHAVE_API"))
 
 
 
