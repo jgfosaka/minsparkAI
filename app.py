@@ -4,11 +4,16 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from openai import OpenAI as OpenAIClient
+
 from dotenv import load_dotenv
 
-import openai
+from importlib import import_module
+openai = import_module("openai")
 import inspect
+print("🔍 loaded from:", inspect.getfile(openai))
+
+from openai import OpenAI
+
 import sys
 
 print(">>> openai package version:", openai.__version__)
