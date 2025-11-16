@@ -8,7 +8,9 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("CHAVE_API"))
+def get_client():
+    return OpenAI(api_key=os.getenv("CHAVE_API"))
+
 
 
 # ---- App e configuração via environment variables ----
@@ -248,6 +250,7 @@ def gerar_flashcards():
 
     # ======== CHAMADA À API OPENAI ========
     try:
+        client = get_client()
         resp = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
