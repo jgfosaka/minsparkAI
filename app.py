@@ -40,8 +40,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Inicializa DB
 db = SQLAlchemy(app)
 
-with app.app_context():
-    db.create_all()
+
 
 # (o resto do arquivo segue — suas classes User, Flashcard, Estatistica, rotas, etc.)
 
@@ -108,7 +107,7 @@ def flashcards():
 
 
 
-from sqlalchemy import func
+from sqlalchemy import func, case
 
 @app.route('/estatisticas')
 def estatisticas():
