@@ -19,13 +19,20 @@ app = Flask(__name__)
 # SECRET_KEY
 app.secret_key = os.environ.get('SECRET_KEY', 'supersecretkey_local')
 
-# DATABASE: primeiro tenta pegar DATABASE_URL (Railway / Render), senão cai pro local
-db_url = os.environ.get('DATABASE_URL') or os.environ.get('MYSQL_URL') or 'mysql+pymysql://root@localhost/mindsparkdb'
+db_url = os.environ.get('DATABASE_URL') or os.environ.get('MYSQL_URL')
 
-# Railway/Heroku-style podem fornecer "mysql://user:pass@host:port/dbname" (sem +pymysql)
-# Ajusta se necessário:
+if not db_url:
+    raise ValueError(
+        "ERRO: Nenhuma variável de ambiente DATABASE_URL ou MYSQL_URL foi definida."
+    )
+
+# Ajuste para SQLAlchemy
 if db_url.startswith("mysql://"):
     db_url = db_url.replace("mysql://", "mysql+pymysql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
