@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from openai import OpenAI
 from dotenv import load_dotenv
 
-print("VERSÃO DO OPENAI INSTALADA:", openai.__version__)
+print("VERSÃO DO OPENAI INSTALADA:", OpenAI.__version__)
 
 load_dotenv()
 def get_client():
