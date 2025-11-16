@@ -4,6 +4,12 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+client = OpenAI(api_key=os.getenv("CHAVE_API"))
+
 
 # ---- App e configuração via environment variables ----
 app = Flask(__name__)
@@ -232,7 +238,7 @@ def gerar_flashcards():
     - A resposta correta deve estar INCLUÍDA em "choices".
     - As demais alternativas devem ser plausíveis, mas erradas.
     - As posições das alternativas devem ser aleatórias (não coloque sempre a correta primeiro).
-    - A resposta correta não pode estar sempre na mesma posição até mesmo dentro do lote de flashcards gerados. (por exemplo: se 5 flashcards forem gerados, a resposta de todos não pode ser a segunda alternativa. Alterne o máximo possível.)
+    - EMBARALHE SEMPRE A RESPOSTA CORRETA DENTRO DO ARRAY DE ESCOLHAS.
     - O conteúdo deve ser direto e educativo, com linguagem natural.
     - Tente não ser muito vago e dê os devidos detalhes, caso preciso.
     - A pergunta precisa ser completa e, quando necessário, haver contexto.
