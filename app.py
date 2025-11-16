@@ -25,8 +25,15 @@ for proxy_var in ["HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY"]:
 print("VERSÃO DO OPENAI INSTALADA:", OpenAI)
 
 load_dotenv()
+import httpx
+
 def get_client():
-    return OpenAI(api_key=os.getenv("CHAVE_API"))
+    http = httpx.Client(proxies=None)  # força sem proxy
+    return OpenAI(
+        api_key=os.getenv("CHAVE_API"),
+        http_client=http
+    )
+
 
 
 
