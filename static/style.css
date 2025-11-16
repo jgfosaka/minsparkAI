@@ -203,6 +203,10 @@ form button:hover {
     color: white;
 }
 
+.text-muted{
+  color: rgb(255 255 255);
+}
+
 
 /* ====== Botões de acerto/erro ====== */
 .btn-success {
