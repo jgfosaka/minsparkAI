@@ -4,7 +4,7 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-from openai import OpenAI
+from openai import OpenAI as OpenAIClient
 from dotenv import load_dotenv
 
 import openai
@@ -22,14 +22,14 @@ for proxy_var in ["HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY"]:
 
 
 
-print("VERSÃO DO OPENAI INSTALADA:", OpenAI)
+print("VERSÃO DO OPENAI INSTALADA:", OpenAIClient)
 
 load_dotenv()
 import httpx
 
 def get_client():
     http = httpx.Client(proxies=None)  # força sem proxy
-    return OpenAI(
+    return OpenAIClient(
         api_key=os.getenv("CHAVE_API"),
         http_client=http
     )
