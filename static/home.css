@@ -1,0 +1,91 @@
+
+
+body {
+  background: linear-gradient(135deg, #4a148c, #880e4f);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+
+.navbar {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(8px);
+}
+
+.navbar-brand {
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: #ffca28 !important;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  margin-left: 10px;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ff6f61 !important;
+}
+
+
+.card {
+  background: #1c1c1c;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.6);
+}
+
+.card h2 {
+  color: #ffca28;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.btn-custom,
+.btn-warning {
+  background: #ff6f61;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: bold;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn-custom:hover,
+.btn-warning:hover {
+  background: #ff3d2e;
+}
+
+
+.container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+.input-group input {
+  border-radius: 10px 0 0 10px !important;
+  border: none;
+  padding: 15px;
+  font-size: 1.1rem;
+}
+
+.input-group button {
+  border-radius: 0 10px 10px 0 !important;
+  font-size: 1.1rem;
+}
+
+.alert {
+  border-radius: 10px;
+  font-weight: 500;
+}

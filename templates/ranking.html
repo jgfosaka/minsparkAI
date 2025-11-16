@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto mt-10 text-center">
+    <h1 class="text-3xl font-bold text-white mb-4">🏆 Ranking de Desempenho</h1>
+    <p class="text-gray-300 mb-6">Veja quem está mandando bem nos estudos!</p>
+
+    <div class="overflow-x-auto rounded-2xl shadow-lg">
+        <table class="min-w-full bg-gray-900 text-gray-200 rounded-2xl">
+            <thead class="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+                <tr>
+                    <th class="py-3 px-4 text-left">Posição</th>
+                    <th class="py-3 px-4 text-left">Usuário</th>
+                    <th class="py-3 px-4 text-center">Acertos</th>
+                    <th class="py-3 px-4 text-center">Erros</th>
+                    <th class="py-3 px-4 text-center">Taxa de Acerto</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in ranking %}
+                <tr>
+                <td>{{ loop.index }}</td> 
+                <td>{{ user.username }}</td>
+                <td>{{ user.acertos }}</td>
+                <td>{{ user.erros }}</td>
+                <td>{{ user.taxa }}%</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

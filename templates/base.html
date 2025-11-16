@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpark AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Bootstrap CDN, por exemplo -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+
+    <!-- Navbar comum -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-purple shadow">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">MindSpark AI</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('flashcards') }}">Flashcards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('estatisticas') }}">Estatísticas</a></li>
+                    <li><a href="{{ url_for('ranking') }}" class="nav-link">Ranking</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Aqui entram os conteúdos específicos de cada página -->
+    <div class="container mt-5">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>
