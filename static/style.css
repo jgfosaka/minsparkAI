@@ -265,3 +265,21 @@ input::placeholder {
 }
 
 
+/* Evita que o último card estique verticalmente */
+.flashcards-row {
+    align-items: flex-start !important;
+}
+
+.flashcards-row .col-md-4 {
+    display: flex !important;
+}
+
+.flashcard-card {
+    height: auto !important;
+    flex-grow: 0 !important;
+}
+
+.list-group-item {
+    white-space: normal !important;
+    word-break: keep-all !important;
+}
