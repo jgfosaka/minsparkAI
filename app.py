@@ -78,6 +78,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
+    resumo_estudos = db.Column(db.Text, nullable=True)
+
 
 class Desempenho(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -137,6 +139,9 @@ def flashcards():
         user_id=session['user_id'],
         respondido=False
     ).all()
+
+    if not user_flashcards:
+        session.pop('resumo_flashcards', None)
 
     return render_template('flashcards.html', flashcards=user_flashcards)
 
@@ -272,6 +277,7 @@ def gerar_flashcards():
     Você é um gerador de flashcards educacionais.
     Gere SEMPRE um JSON válido no formato abaixo (sem texto adicional, sem explicações):
     {
+      "resumo": "Resumo breve sobre o tema",
       "flashcards": [
         {
           "question": "string",
@@ -291,7 +297,7 @@ def gerar_flashcards():
     - A pergunta precisa ser completa e, quando necessário, haver contexto.
     """
 
-    usermsg = f"Crie 5 flashcards sobre o tema: {prompt}. Cada flashcard deve seguir o formato descrito acima."
+    usermsg = f"Crie um resumo e 5 flashcards sobre o tema: {prompt}. Cada flashcard deve seguir o formato descrito acima."
 
     # ======== CHAMADA À API OPENAI ========
     try:
@@ -321,6 +327,8 @@ def gerar_flashcards():
         print("⚠️ Erro ao converter JSON da IA:", e)
         flash("A resposta da IA não veio em JSON válido. Tente novamente.", "warning")
         return redirect(url_for('flashcards'))
+    
+    resumo = data.get("resumo", "")
 
     # ======== SALVAR NO BANCO ========
     created = 0
@@ -347,6 +355,8 @@ def gerar_flashcards():
 
     db.session.commit()
     print(f"💾 {created} flashcards salvos no banco com sucesso!")
+
+    session['resumo_flashcards'] = resumo
 
     flash(f"{created} flashcards gerados com sucesso!", "success")
     return redirect(url_for('flashcards'))

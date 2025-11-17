@@ -2,6 +2,13 @@
 {% block content %}
 <div class="container mt-4 flashcard-page">
   <h2 class="text-light text-center mb-4">Seus Flashcards</h2>
+    {% if session['resumo_flashcards'] %}
+      <div class="alert alert-info text-dark p-3 mb-4" style="max-width: 800px;">
+          <h5 class="fw-bold">Resumo do Conteúdo</h5>
+          <p class="mb-0">{{ session['resumo_flashcards'] }}</p>
+      </div>
+    {% endif %}
+
 
   {% if flashcards %}
     <div class="flashcard-grid">
