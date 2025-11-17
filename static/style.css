@@ -208,7 +208,7 @@ form button:hover {
 }
 
 :root, [data-bs-theme=light]{
-  --bs-secondary-color: white;
+  --bs-secondary-color: white !important; 
 }
 
 
