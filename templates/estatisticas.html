@@ -2,45 +2,35 @@
 {% block content %}
 <div class="container text-center mt-5">
     <h1 class="mb-4 text-light">📊 Estatísticas de Desempenho</h1>
-    <p class="text-secondary">Acompanhe seu progresso nos estudos com os flashcards gerados pela MindSpark AI.</p>
+    <p class="text-secondary">Veja a proporção entre seus acertos e erros nos flashcards.</p>
 
+    <!-- Gráfico de Rosquinha -->
     <div class="card bg-dark text-light shadow-lg p-4 mt-4">
-        <canvas id="graficoDesempenho" width="400" height="200"></canvas>
+        <h4 class="mb-3">🥧 Proporção de Acertos e Erros</h4>
+        <canvas id="graficoPizza" width="300" height="300"></canvas>
     </div>
 
     <div class="mt-4">
         <h4>Resumo:</h4>
-        <p>✅ Acertos: <strong>{{ acertos }}</strong></p>
-        <p>❌ Erros: <strong>{{ erros }}</strong></p>
+        <p>✅ Acertos: <strong>{{ acertos_total }}</strong></p>
+        <p>❌ Erros: <strong>{{ erros_total }}</strong></p>
     </div>
 </div>
 
-<!-- Script para o gráfico -->
+<!-- Script Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
-    const ctx = document.getElementById('graficoDesempenho').getContext('2d');
-    const grafico = new Chart(ctx, {
-        type: 'line',
+    const ctxPizza = document.getElementById('graficoPizza').getContext('2d');
+    const graficoPizza = new Chart(ctxPizza, {
+        type: 'doughnut',
         data: {
-            labels: {{ semanas | tojson }},
-            datasets: [
-                {
-                    label: 'Acertos',
-                    data: {{ acertos | tojson }},
-                    borderColor: '#00ff9c',
-                    backgroundColor: 'rgba(0, 255, 156, 0.2)',
-                    fill: true,
-                    tension: 0.3
-                },
-                {
-                    label: 'Erros',
-                    data: {{ erros | tojson }},
-                    borderColor: '#ff4c4c',
-                    backgroundColor: 'rgba(255, 76, 76, 0.2)',
-                    fill: true,
-                    tension: 0.3
-                }
-            ]
+            labels: ['Acertos', 'Erros'],
+            datasets: [{
+                data: [{{ acertos_total }}, {{ erros_total }}],
+                backgroundColor: ['#00ff9c', '#ff4c4c'],
+                hoverOffset: 12
+            }]
         },
         options: {
             plugins: {
@@ -50,13 +40,9 @@
                         font: { size: 14 }
                     }
                 }
-            },
-            scales: {
-                x: { ticks: { color: '#fff' } },
-                y: { ticks: { color: '#fff' } }
             }
         }
     });
 </script>
-{% endblock %}
 
+{% endblock %}
