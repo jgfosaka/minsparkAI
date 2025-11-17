@@ -211,7 +211,7 @@ form button:hover {
   --bs-secondary-color: white !important; 
 }
 
-:root, [data-bs-theme=light], .form-control{
+:root, [data-bs-theme=light] .form-control{
   --bs-secondary-color: rgb(75, 75, 75) !important; 
 }
 
