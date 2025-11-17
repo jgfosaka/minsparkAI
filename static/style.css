@@ -207,13 +207,7 @@ form button:hover {
   color: rgb(255 255 255) !important;
 }
 
-:root, [data-bs-theme=light]{
-  --bs-secondary-color: white !important; 
-}
 
-:root, [data-bs-theme=light] .form-control{
-  --bs-secondary-color: rgb(75, 75, 75) !important; 
-}
 
 
 /* ====== Botões de acerto/erro ====== */
@@ -343,4 +337,12 @@ input::placeholder {
 .list-group-item {
     white-space: normal !important;
     word-break: keep-all !important;
+}
+
+:root, [data-bs-theme=light]{
+  --bs-secondary-color: white !important; 
+}
+
+:root, [data-bs-theme=light] .form-control{
+  --bs-secondary-color: rgb(75, 75, 75) !important; 
 }
