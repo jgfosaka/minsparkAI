@@ -207,6 +207,10 @@ form button:hover {
   color: rgb(255 255 255) !important;
 }
 
+:root, [data-bs-theme=light]{
+  --bs-secondary-color: white;
+}
+
 
 /* ====== Botões de acerto/erro ====== */
 .btn-success {
